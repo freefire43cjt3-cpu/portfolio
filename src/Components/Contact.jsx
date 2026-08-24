@@ -1,26 +1,6 @@
 import "./Contact.css";
-import { useForm, ValidationError } from "@formspree/react";
 
 function Contact() {
-  // Replace YOUR_FORM_ID with your Formspree form ID
-  const [state, handleSubmit] = useForm("YOUR_FORM_ID");
-
-  if (state.succeeded) {
-    return (
-      <section className="contact" id="contact">
-        <div className="contact-container">
-          <div className="contact-success">
-            <span className="success-icon">✓</span>
-            <h2>Message Sent!</h2>
-            <p>
-              Thanks for reaching out. I'll get back to you as soon as possible.
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="contact" id="contact">
       <div className="contact-container">
@@ -28,9 +8,11 @@ function Contact() {
         {/* HEADER */}
         <div className="contact-header">
           <span>GET IN TOUCH</span>
+
           <h2>
             Let's <b>Connect</b>
           </h2>
+
           <p>
             Have a project, opportunity, or just want to say hello?
             Feel free to reach out.
@@ -44,34 +26,40 @@ function Contact() {
 
             <div className="contact-intro">
               <h3>Let's work together.</h3>
+
               <p>
                 I'm always open to new opportunities, creative projects,
                 and meaningful collaborations.
               </p>
             </div>
 
+            {/* EMAIL */}
             <a
               href="mailto:charlessamuelraymond@gmail.com"
               className="contact-item"
             >
               <div className="contact-icon">✉</div>
+
               <div>
                 <span>Email</span>
                 <strong>charlessamuelraymond@gmail.com</strong>
               </div>
             </a>
 
+            {/* PHONE */}
             <a
               href="tel:08136362066"
               className="contact-item"
             >
               <div className="contact-icon">☎</div>
+
               <div>
                 <span>Phone</span>
                 <strong>08136362066</strong>
               </div>
             </a>
 
+            {/* X */}
             <a
               href="https://x.com/rayghog?s=11"
               target="_blank"
@@ -79,6 +67,7 @@ function Contact() {
               className="contact-item"
             >
               <div className="contact-icon">𝕏</div>
+
               <div>
                 <span>X / Twitter</span>
                 <strong>@rayghog</strong>
@@ -90,12 +79,18 @@ function Contact() {
           {/* FORM */}
           <div className="contact-form-wrapper">
 
-            <form onSubmit={handleSubmit} className="contact-form">
+            <form
+              action="https://formspree.io/f/YOUR_FORM_ID"
+              method="POST"
+              className="contact-form"
+            >
 
               <div className="form-row">
 
+                {/* NAME */}
                 <div className="form-group">
                   <label htmlFor="name">Your Name</label>
+
                   <input
                     id="name"
                     type="text"
@@ -103,15 +98,12 @@ function Contact() {
                     placeholder="John Doe"
                     required
                   />
-                  <ValidationError
-                    prefix="Name"
-                    field="name"
-                    errors={state.errors}
-                  />
                 </div>
 
+                {/* EMAIL */}
                 <div className="form-group">
                   <label htmlFor="email">Your Email</label>
+
                   <input
                     id="email"
                     type="email"
@@ -119,17 +111,14 @@ function Contact() {
                     placeholder="you@example.com"
                     required
                   />
-                  <ValidationError
-                    prefix="Email"
-                    field="email"
-                    errors={state.errors}
-                  />
                 </div>
 
               </div>
 
+              {/* SUBJECT */}
               <div className="form-group">
                 <label htmlFor="subject">Subject</label>
+
                 <input
                   id="subject"
                   type="text"
@@ -139,8 +128,10 @@ function Contact() {
                 />
               </div>
 
+              {/* MESSAGE */}
               <div className="form-group">
                 <label htmlFor="message">Message</label>
+
                 <textarea
                   id="message"
                   name="message"
@@ -148,27 +139,22 @@ function Contact() {
                   placeholder="Tell me about your project..."
                   required
                 ></textarea>
-
-                <ValidationError
-                  prefix="Message"
-                  field="message"
-                  errors={state.errors}
-                />
               </div>
 
+              {/* FORM SETTINGS */}
+              <input
+                type="hidden"
+                name="_subject"
+                value="New Portfolio Contact Message"
+              />
+
+              {/* BUTTON */}
               <button
                 type="submit"
                 className="contact-button"
-                disabled={state.submitting}
               >
-                {state.submitting ? "Sending..." : "Send Message →"}
+                Send Message →
               </button>
-
-              {state.errors?.getFormErrors()?.length > 0 && (
-                <p className="form-error">
-                  Something went wrong. Please try again.
-                </p>
-              )}
 
             </form>
 
