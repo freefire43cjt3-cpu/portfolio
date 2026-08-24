@@ -1,0 +1,258 @@
+/* =========================
+   CERTIFICATES SECTION
+========================= */
+
+.certificates {
+  padding: 100px 8%;
+  background: #0b0b16;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* HEADER */
+
+.certificates-header {
+  max-width: 700px;
+  margin-bottom: 60px;
+}
+
+.certificates-header > span,
+.achievement-title > span {
+  color: #8b5cf6;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.certificates-header h2 {
+  font-size: clamp(35px, 5vw, 60px);
+  margin: 12px 0 20px;
+  line-height: 1.1;
+}
+
+.certificates-header h2 b {
+  color: #8b5cf6;
+}
+
+.certificates-header p {
+  color: #a7a7b5;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* =========================
+   MAIN CERTIFICATE
+========================= */
+
+.certificate-main {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* IMAGE */
+
+.certificate-image {
+  width: 100%;
+}
+
+.certificate-image a {
+  display: block;
+  width: 100%;
+}
+
+.certificate-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 250px;
+  object-fit: contain;
+  border-radius: 18px;
+  background: #fff;
+  transition: 0.4s ease;
+}
+
+.certificate-image img:hover {
+  transform: scale(1.02);
+}
+
+/* INFO */
+
+.certificate-info {
+  padding: 10px;
+}
+
+.certificate-tag {
+  color: #8b5cf6;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.certificate-info h3 {
+  font-size: 38px;
+  margin: 15px 0;
+  line-height: 1.15;
+}
+
+.certificate-info p {
+  color: #aaa;
+  line-height: 1.8;
+}
+
+/* DETAILS */
+
+.certificate-details {
+  display: flex;
+  gap: 60px;
+  margin: 30px 0;
+}
+
+.certificate-details div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.certificate-details small {
+  color: #777;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.certificate-details strong {
+  color: #fff;
+}
+
+/* BUTTON */
+
+.view-certificate {
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #8b5cf6, #c026d3);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.view-certificate:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+/* =========================
+   ACHIEVEMENTS
+========================= */
+
+.achievement-title {
+  margin: 100px 0 35px;
+}
+
+.achievement-title h3 {
+  font-size: 32px;
+  margin-top: 10px;
+}
+
+/* GALLERY */
+
+.achievement-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.achievement-gallery a {
+  display: block;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #151522;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.achievement-gallery img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: 0.4s ease;
+}
+
+.achievement-gallery a:hover img {
+  transform: scale(1.06);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+  .certificate-main {
+    grid-template-columns: 1fr;
+  }
+
+  .achievement-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .certificates {
+    padding: 70px 20px;
+  }
+
+  .certificate-main {
+    padding: 18px;
+    gap: 35px;
+  }
+
+  .certificate-info h3 {
+    font-size: 28px;
+  }
+
+  .certificate-details {
+    gap: 25px;
+  }
+
+  .achievement-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .achievement-gallery img {
+    height: 250px;
+  }
+}
+
+
+/* VIDEO */
+.defense-video {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.defense-video video {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 16px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.defense-video h3 {
+  margin-bottom: 8px;
+}
+
+.defense-video p {
+  margin: 0;
+  opacity: 0.7;
+}

@@ -1,0 +1,139 @@
+/* LOADER.CSS */
+
+.loader{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #050810;
+    z-index: 9999;
+    color: white;
+}
+
+.loader-content{
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* RC LOGO */
+.loader-logo{
+    width: 140px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 32px;
+    font-weight: 700;
+    color: #299cff;
+    border: 5px solid #202633;
+    margin-bottom: 35px;
+    position: relative;
+}
+
+
+
+/* THE RING */
+.loader-logo::before{
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+  border-top-color: #299cff;
+  border-right-color: #299cff;
+  border-bottom-color: #7b5cff;
+  transform: rotate(-35deg);
+  animation: spin 1.5s linear infinite;
+}
+
+/* LOADING TEXT */
+.loader-text{
+    color: #777f8f;
+    font-size: 14px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* PERCENTAGE */
+.loader-number{
+    font-size: 42px;
+  font-weight: 700;
+
+  margin-bottom: 25px;
+
+  background: linear-gradient(
+    90deg,
+    #299cff,
+    #7b5cff
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* PROGRESS BAR BACKGROUND */
+loader.bar{
+    width: 100%;
+    height: 4px;
+    background: #1b2230;
+     border-radius: 10px;
+    overflow: hidden;
+}
+
+/* PROGRESS */
+.loader-progress {
+  height: 100%;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    90deg,
+    #7b5cff,
+    #299cff,
+    #38d9c5
+  );
+
+  transition: width 0.1s linear;
+}
+
+
+/* ANIMATION */
+@keyframes spin {
+  from {
+    transform: rotate(-35deg);
+  }
+
+  to {
+    transform: rotate(325deg);
+  }
+}
+
+/* RESPONSIVE FOR ALL DEVICES */
+@media (max-width: 600px) {
+  .loader-content {
+    width: 75%;
+  }
+
+  .loader-logo {
+    width: 120px;
+    height: 120px;
+    font-size: 28px;
+  }
+
+  .loader-number {
+    font-size: 36px;
+  }
+
+  .loader-text {
+    font-size: 13px;
+  }
+}
