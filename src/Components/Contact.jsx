@@ -78,9 +78,8 @@ function Contact() {
 
           {/* FORM */}
           <div className="contact-form-wrapper">
-
             <form
-              action="https://formspree.io/f/xqwerty12"
+              action="https://formspree.io/f/YOUR_REAL_FORM_ID"
               method="POST"
               className="contact-form"
             >
@@ -141,7 +140,7 @@ function Contact() {
                 ></textarea>
               </div>
 
-              {/* FORM SETTINGS */}
+              {/* EMAIL SUBJECT */}
               <input
                 type="hidden"
                 name="_subject"
@@ -157,7 +156,6 @@ function Contact() {
               </button>
 
             </form>
-
           </div>
 
         </div>
