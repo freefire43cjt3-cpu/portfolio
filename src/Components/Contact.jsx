@@ -80,7 +80,7 @@ function Contact() {
           <div className="contact-form-wrapper">
 
             <form
-              action="https://formspree.io/f/xxxxxxxx"
+              action="https://formspree.io/f/xqwerty12"
               method="POST"
               className="contact-form"
             >
