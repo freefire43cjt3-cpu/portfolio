@@ -3,39 +3,46 @@ import "./Projects.css";
 function Projects() {
   const projects = [
     {
+  title: "Barbar Studio",
+  description:
+    "A modern, responsive barber website designed to showcase services, gallery work, and make booking easier for customers.",
+  liveLink: "https://barbar-studio.vercel.app/",
+  number: "01",
+},
+    {
       title: "Fitzone Hub",
       description:
         "A modern fitness website designed with a clean and engaging user experience.",
       link: "https://fitzonehub.vercel.app/",
-      number: "01",
+      number: "02",
     },
     {
       title: "The Flavor Nest",
       description:
         "A stylish food and restaurant website focused on presenting meals beautifully.",
       link: "https://theflavornest.vercel.app/",
-      number: "02",
+      number: "03",
     },
     {
       title: "Luexe Estate",
       description:
         "A modern real-estate platform designed for showcasing properties in a professional way.",
       link: "https://luexeestate.vercel.app/",
-      number: "03",
+      number: "04",
     },
     {
       title: "Architecture",
       description:
         "A clean architecture website built to showcase architectural ideas and projects.",
       link: "https://architecture-blond.vercel.app/",
-      number: "04",
+      number: "05",
     },
     {
       title: "Global Xchange",
       description:
         "A modern business-focused website with a professional and responsive interface.",
       link: "https://global-xchange.vercel.app/",
-      number: "05",
+      number: "06",
     },
   ];
 
