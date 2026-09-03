@@ -3,12 +3,12 @@ import "./Projects.css";
 function Projects() {
   const projects = [
     {
-  title: "Barbar Studio",
-  description:
-    "A modern, responsive barber website designed to showcase services, gallery work, and make booking easier for customers.",
-  Link: "https://barbar-studio.vercel.app/",
-  number: "01",
-},
+      title: "Barbar Studio",
+      description:
+        "A modern, responsive barber website designed to showcase services, gallery work, and make booking easier for customers.",
+      link: "https://barbar-studio.vercel.app/",
+      number: "01",
+    },
     {
       title: "Fitzone Hub",
       description:
