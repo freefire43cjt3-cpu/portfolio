@@ -6,7 +6,7 @@ function Projects() {
   title: "Barbar Studio",
   description:
     "A modern, responsive barber website designed to showcase services, gallery work, and make booking easier for customers.",
-  liveLink: "https://barbar-studio.vercel.app/",
+  Link: "https://barbar-studio.vercel.app/",
   number: "01",
 },
     {
