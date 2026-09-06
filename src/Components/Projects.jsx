@@ -10,10 +10,10 @@ function Projects() {
       number: "01",
     },
     {
-      title: "Fitzone Hub",
+      title: "Shell Care",
       description:
-        "A modern fitness website designed with a clean and engaging user experience.",
-      link: "https://fitzonehub.vercel.app/",
+        "A modern and responsive healthcare website designed to showcase medical services, doctors, appointments, and patient-focused care.",
+      link: "https://shellcare.vercel.app/",
       number: "02",
     },
     {
