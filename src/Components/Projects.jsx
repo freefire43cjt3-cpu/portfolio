@@ -30,13 +30,13 @@ function Projects() {
       link: "https://luexeestate.vercel.app/",
       number: "04",
     },
-    {
-      title: "Architecture",
-      description:
-        "A clean architecture website built to showcase architectural ideas and projects.",
-      link: "https://architecture-blond.vercel.app/",
-      number: "05",
-    },
+    // {
+    //   title: "Architecture",
+    //   description:
+    //     "A clean architecture website built to showcase architectural ideas and projects.",
+    //   link: "https://architecture-blond.vercel.app/",
+    //   number: "05",
+    // },
     {
       title: "Global Xchange",
       description:
