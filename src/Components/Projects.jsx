@@ -17,10 +17,10 @@ function Projects() {
       number: "02",
     },
     {
-      title: "The Flavor Nest",
+      title: "Velora Auto",
       description:
-        "A stylish food and restaurant website focused on presenting meals beautifully.",
-      link: "https://theflavornest.vercel.app/",
+        "A premium automotive dealership website designed with a modern luxury aesthetic, smooth animations, responsive layouts, vehicle collections, performance showcases, testimonials, and an interactive contact experience.",
+      link: "https://velora-auto.vercel.app/",
       number: "03",
     },
     {
