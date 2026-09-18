@@ -4,53 +4,109 @@ import "./Navbar.css";
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   return (
     <nav className="navbar">
 
-      {/* Logo */}
-      <a href="#home" className="logo" onClick={closeMenu}>
-        RC
+      {/* LOGO */}
+      <a
+        href="#home"
+        className="logo"
+        onClick={closeMenu}
+      >
+        <span>R</span>C
       </a>
 
-      {/* Desktop Links */}
+      {/* DESKTOP NAVIGATION */}
       <div className="nav-links">
+
         <a href="#home">Home</a>
+
         <a href="#about">About</a>
+
         <a href="#skills">Skills</a>
+
         <a href="#projects">Projects</a>
-        <a href="#certificates">Certificates</a>
+
+        <a href="#certificates">
+          Certificates
+        </a>
+
         <a href="#contact">Contact</a>
+
       </div>
 
-      {/* Contact */}
-      <a href="tel:08136362066" className="nav-contact">
-        Let's Talk
+      {/* LET'S TALK */}
+      <a
+        href="#contact"
+        className="nav-contact"
+        onClick={closeMenu}
+      >
+        <span>Let's Talk</span>
+        <span className="nav-arrow">↗</span>
       </a>
 
-      {/* Hamburger */}
+      {/* MOBILE MENU BUTTON */}
       <button
-        className={`hamburger ${menuOpen ? "active" : ""}`}
-        onClick={() => setMenuOpen(!menuOpen)}
+        type="button"
+        className={`hamburger ${
+          menuOpen ? "active" : ""
+        }`}
+        onClick={() =>
+          setMenuOpen(!menuOpen)
+        }
+        aria-label="Toggle navigation menu"
+        aria-expanded={menuOpen}
       >
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      {/* Mobile Menu */}
-      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        <a href="#home" onClick={closeMenu}>Home</a>
-        <a href="#about" onClick={closeMenu}>About</a>
-        <a href="#skills" onClick={closeMenu}>Skills</a>
-        <a href="#projects" onClick={closeMenu}>Projects</a>
-        <a href="#certificates" onClick={closeMenu}>Certificates</a>
-        <a href ="#contact" onClick={closeMenu}>Contact</a>
+      {/* MOBILE MENU */}
+      <div
+        className={`mobile-menu ${
+          menuOpen ? "open" : ""
+        }`}
+      >
+        <a href="#home" onClick={closeMenu}>
+          Home
+        </a>
 
-        {/* <a href="tel:08136362066" className="mobile-contact">
-          📞 08136362066
-        </a> */}
+        <a href="#about" onClick={closeMenu}>
+          About
+        </a>
+
+        <a href="#skills" onClick={closeMenu}>
+          Skills
+        </a>
+
+        <a href="#projects" onClick={closeMenu}>
+          Projects
+        </a>
+
+        <a
+          href="#certificates"
+          onClick={closeMenu}
+        >
+          Certificates
+        </a>
+
+        <a href="#contact" onClick={closeMenu}>
+          Contact
+        </a>
+
+        <a
+          href="#contact"
+          className="mobile-contact"
+          onClick={closeMenu}
+        >
+          Let's Talk
+          <span>↗</span>
+        </a>
       </div>
 
     </nav>

@@ -1,29 +1,35 @@
 import "./Footer.css";
+import { ArrowUpRight, ArrowUp } from "lucide-react";
 
 function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="footer">
-
       <div className="footer-container">
 
         {/* TOP */}
         <div className="footer-top">
 
+          {/* BRAND */}
           <div className="footer-brand">
             <a href="#home" className="footer-logo">
-              Ray<span>.</span>
+              <span>R</span>C
             </a>
 
             <p>
-              Building digital experiences with creativity,
-              clean code and purpose.
+              Building modern digital experiences with clean code,
+              creativity, and purpose.
             </p>
+
+            <a href="#contact" className="footer-cta">
+              Let's work together
+              <ArrowUpRight size={16} />
+            </a>
           </div>
 
           {/* NAVIGATION */}
-          <div className="footer-links">
+          <div className="footer-column">
             <h4>Explore</h4>
 
             <a href="#home">Home</a>
@@ -35,28 +41,38 @@ function Footer() {
           </div>
 
           {/* CONNECT */}
-          <div className="footer-connect">
-            <h4>Let's Connect</h4>
+          <div className="footer-column footer-connect">
+            <h4>Connect</h4>
+
+            <a href="mailto:charlessamuelraymond@gmail.com">
+              Email
+              <ArrowUpRight size={14} />
+            </a>
 
             <a
-              href="mailto:charlessamuelraymond@gmail.com"
-              className="footer-email"
+              href="https://wa.me/2348136362066"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              charlessamuelraymond@gmail.com
+              WhatsApp
+              <ArrowUpRight size={14} />
             </a>
 
             <a
               href="https://x.com/rayghog?s=11"
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-social"
             >
-              <span>𝕏</span>
-              Follow me on X
-              <span className="arrow">↗</span>
+              X / Twitter
+              <ArrowUpRight size={14} />
             </a>
           </div>
 
+        </div>
+
+        {/* LARGE FOOTER TEXT */}
+        <div className="footer-big-text">
+          <span>RAYMOND</span>
         </div>
 
         {/* LINE */}
@@ -66,21 +82,20 @@ function Footer() {
         <div className="footer-bottom">
 
           <p>
-            © {year} Ray. All rights reserved.
+            © {year} Raymond Charles. All rights reserved.
           </p>
 
-          <p className="footer-made">
-            Designed & built with <span>♥</span> and code.
+          <p className="footer-location">
+            Based in Nigeria · Available for projects
           </p>
 
-          <a href="#home" className="back-top">
-            ↑
+          <a href="#home" className="back-top" aria-label="Back to top">
+            <ArrowUp size={18} />
           </a>
 
         </div>
 
       </div>
-
     </footer>
   );
 }

@@ -1,84 +1,189 @@
-/* =========================
-   CERTIFICATES SECTION
-========================= */
-
 .certificates {
-  padding: 100px 8%;
-  background: #0b0b16;
-  color: #fff;
+  position: relative;
+
+  padding: 130px 6% 110px;
+
+  background: #070a11;
+
+  color: #ffffff;
+
   overflow: hidden;
+}
+
+.certificates::before {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  right: -250px;
+  top: 15%;
+
+  background: #8b5cf6;
+
+  filter: blur(190px);
+
+  opacity: 0.07;
+
+  pointer-events: none;
+}
+
+.certificates-container {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 1150px;
+
+  margin: 0 auto;
 }
 
 /* HEADER */
 
 .certificates-header {
-  max-width: 700px;
-  margin-bottom: 60px;
+  max-width: 720px;
+
+  margin-bottom: 65px;
 }
 
 .certificates-header > span,
-.achievement-title > span {
-  color: #8b5cf6;
-  font-size: 13px;
+.achievement-title > span,
+.defense-heading > span {
+  display: inline-block;
+
+  color: #38bdf8;
+
+  font-size: 12px;
+
   font-weight: 700;
-  letter-spacing: 2px;
+
+  letter-spacing: 4px;
 }
 
 .certificates-header h2 {
-  font-size: clamp(35px, 5vw, 60px);
-  margin: 12px 0 20px;
-  line-height: 1.1;
+  margin: 16px 0 20px;
+
+  font-size: clamp(42px, 6vw, 70px);
+
+  line-height: 1.05;
+
+  letter-spacing: -3px;
+
+  font-weight: 800;
 }
 
 .certificates-header h2 b {
-  color: #8b5cf6;
+  background: linear-gradient(
+    90deg,
+    #38bdf8,
+    #8b5cf6
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .certificates-header p {
-  color: #a7a7b5;
-  line-height: 1.8;
+  max-width: 600px;
+
+  margin: 0;
+
+  color: #8993a5;
+
   font-size: 16px;
+
+  line-height: 1.8;
 }
 
-/* =========================
-   MAIN CERTIFICATE
-========================= */
+/* MAIN CERTIFICATE */
 
 .certificate-main {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 60px;
+
+  grid-template-columns: 1.15fr 0.85fr;
+
+  gap: 50px;
+
   align-items: center;
-  padding: 35px;
+
+  padding: 25px;
+
+  background: rgba(255, 255, 255, 0.025);
+
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.03);
+
+  border-radius: 24px;
+
+  transition: 0.35s ease;
+}
+
+.certificate-main:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+
+  transform: translateY(-5px);
 }
 
 /* IMAGE */
 
 .certificate-image {
-  width: 100%;
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .certificate-image a {
+  position: relative;
+
   display: block;
-  width: 100%;
 }
 
 .certificate-image img {
   display: block;
+
   width: 100%;
+
   height: auto;
-  min-height: 250px;
-  object-fit: contain;
-  border-radius: 18px;
-  background: #fff;
-  transition: 0.4s ease;
+
+  transition: transform 0.6s ease;
 }
 
-.certificate-image img:hover {
-  transform: scale(1.02);
+.certificate-image:hover img {
+  transform: scale(1.03);
+}
+
+.image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background: rgba(5, 7, 13, 0.65);
+
+  opacity: 0;
+
+  transition: 0.35s ease;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.certificate-image:hover .image-overlay {
+  opacity: 1;
 }
 
 /* INFO */
@@ -88,20 +193,45 @@
 }
 
 .certificate-tag {
-  color: #8b5cf6;
-  font-size: 12px;
+  color: #38bdf8;
+
+  font-size: 11px;
+
   font-weight: 700;
-  letter-spacing: 2px;
+
+  letter-spacing: 3px;
 }
 
 .certificate-info h3 {
-  font-size: 38px;
-  margin: 15px 0;
-  line-height: 1.15;
+  margin: 17px 0;
+
+  font-size: clamp(30px, 4vw, 45px);
+
+  line-height: 1.08;
+
+  letter-spacing: -2px;
 }
 
-.certificate-info p {
-  color: #aaa;
+.certificate-info h3 span {
+  display: block;
+
+  background: linear-gradient(
+    90deg,
+    #38bdf8,
+    #8b5cf6
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.certificate-info > p {
+  margin: 0;
+
+  color: #8993a5;
+
+  font-size: 14px;
+
   line-height: 1.8;
 }
 
@@ -109,92 +239,215 @@
 
 .certificate-details {
   display: flex;
-  gap: 60px;
+
+  gap: 50px;
+
   margin: 30px 0;
 }
 
 .certificate-details div {
   display: flex;
+
   flex-direction: column;
-  gap: 8px;
+
+  gap: 7px;
 }
 
 .certificate-details small {
-  color: #777;
-  font-size: 11px;
-  letter-spacing: 1px;
+  color: #4b5563;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
 }
 
 .certificate-details strong {
-  color: #fff;
+  color: #ffffff;
+
+  font-size: 14px;
 }
 
 /* BUTTON */
 
 .view-certificate {
-  display: inline-block;
-  padding: 14px 24px;
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 12px 18px;
+
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
   border-radius: 30px;
-  background: linear-gradient(135deg, #8b5cf6, #c026d3);
-  color: #fff;
+
   text-decoration: none;
+
+  font-size: 13px;
+
   font-weight: 600;
+
+  transition: 0.3s ease;
+}
+
+.view-certificate span {
+  color: #38bdf8;
+
   transition: 0.3s ease;
 }
 
 .view-certificate:hover {
+  background: #ffffff;
+
+  color: #05070d;
+
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
 }
 
-/* =========================
-   ACHIEVEMENTS
-========================= */
+.view-certificate:hover span {
+  transform: translate(3px, -3px);
+}
+
+/* ACHIEVEMENT TITLE */
 
 .achievement-title {
+  max-width: 700px;
+
   margin: 100px 0 35px;
 }
 
 .achievement-title h3 {
-  font-size: 32px;
-  margin-top: 10px;
+  margin: 14px 0 10px;
+
+  font-size: clamp(30px, 4vw, 45px);
+
+  letter-spacing: -1px;
+}
+
+.achievement-title p {
+  margin: 0;
+
+  color: #8993a5;
+
+  font-size: 14px;
+
+  line-height: 1.7;
 }
 
 /* GALLERY */
 
 .achievement-gallery {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+
+  gap: 18px;
 }
 
 .achievement-gallery a {
   display: block;
+
   overflow: hidden;
-  border-radius: 18px;
-  background: #151522;
+
+  aspect-ratio: 4 / 3;
+
+  background: #0d111a;
+
   border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 18px;
 }
 
 .achievement-gallery img {
-  display: block;
   width: 100%;
-  height: 280px;
+  height: 100%;
+
+  display: block;
+
   object-fit: cover;
-  transition: 0.4s ease;
+
+  transition: transform 0.5s ease;
 }
 
 .achievement-gallery a:hover img {
   transform: scale(1.06);
 }
 
-/* =========================
-   TABLET
-========================= */
+/* VIDEO */
+
+.defense-video {
+  margin-top: 100px;
+}
+
+.defense-heading {
+  margin-bottom: 30px;
+}
+
+.defense-heading h3 {
+  margin: 14px 0 10px;
+
+  font-size: clamp(30px, 4vw, 45px);
+
+  letter-spacing: -1px;
+}
+
+.defense-heading h3 b {
+  background: linear-gradient(
+    90deg,
+    #38bdf8,
+    #8b5cf6
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.defense-heading p {
+  margin: 0;
+
+  color: #8993a5;
+
+  font-size: 14px;
+}
+
+.video-wrapper {
+  max-width: 850px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 20px;
+
+  background: #05070d;
+}
+
+.defense-video video {
+  display: block;
+
+  width: 100%;
+
+  max-height: 600px;
+}
+
+/* TABLET */
 
 @media (max-width: 900px) {
+  .certificates {
+    padding: 110px 6% 90px;
+  }
+
   .certificate-main {
     grid-template-columns: 1fr;
+
+    gap: 30px;
   }
 
   .achievement-gallery {
@@ -202,57 +455,62 @@
   }
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 600px) {
   .certificates {
-    padding: 70px 20px;
+    padding: 100px 20px 75px;
+  }
+
+  .certificates-header {
+    margin-bottom: 45px;
+  }
+
+  .certificates-header h2 {
+    font-size: 43px;
+
+    letter-spacing: -2px;
+  }
+
+  .certificates-header p {
+    font-size: 14px;
   }
 
   .certificate-main {
     padding: 18px;
-    gap: 35px;
+
+    gap: 30px;
+
+    border-radius: 20px;
+  }
+
+  .certificate-info {
+    padding: 5px;
   }
 
   .certificate-info h3 {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .certificate-details {
     gap: 25px;
+
+    flex-wrap: wrap;
+  }
+
+  .achievement-title {
+    margin-top: 75px;
   }
 
   .achievement-gallery {
     grid-template-columns: 1fr;
   }
 
-  .achievement-gallery img {
-    height: 250px;
+  .achievement-gallery a {
+    aspect-ratio: 16 / 11;
   }
-}
 
-
-/* VIDEO */
-.defense-video {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.defense-video video {
-  width: 100%;
-  max-width: 800px;
-  border-radius: 16px;
-  display: block;
-  margin: 0 auto 20px;
-}
-
-.defense-video h3 {
-  margin-bottom: 8px;
-}
-
-.defense-video p {
-  margin: 0;
-  opacity: 0.7;
+  .defense-video {
+    margin-top: 75px;
+  }
 }
