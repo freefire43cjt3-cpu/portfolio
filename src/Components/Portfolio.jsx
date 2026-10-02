@@ -9,6 +9,7 @@ import {
   Building2,
 } from "lucide-react";
 
+// FIXED: removed SiSupabase, SiMui, SiFigma (they were never used)
 import {
   SiHtml5,
   SiCss,
@@ -18,11 +19,8 @@ import {
   SiVite,
   SiNodedotjs,
   SiBootstrap,
-  SiSupabase,
-  SiMui,
   SiGit,
   SiVercel,
-  SiFigma,
 } from "react-icons/si";
 
 import "./Portfolio.css";
@@ -50,7 +48,6 @@ const PROJECTS = [
     link: "https://ubanagrill.vercel.app",
     tags: ["JavaScript", "CSS"],
   },
-
   {
     number: "02",
     title: "Barbar Studio",
@@ -60,7 +57,6 @@ const PROJECTS = [
     link: "https://barbar-studio.vercel.app/",
     tags: ["React", "CSS", "JavaScript"],
   },
-
   {
     number: "03",
     title: "Shell Care",
@@ -71,19 +67,19 @@ const PROJECTS = [
     tags: ["React", "CSS", "JavaScript"],
   },
   {
-  number: "04",
-  title: "Velora Motors",
-  type: "Automotive",
-  desc: "A modern luxury automotive website designed to showcase premium vehicles with elegant visuals, detailed specifications, pricing information, and vehicle enquiry options.",
-  image: "/images/car1.jpeg",
-  link: "https://velora-auto.vercel.app/",
-  tags: ["React", "CSS", "JavaScript", "Responsive Design"],
-},
+    number: "04",
+    title: "Velora Motors",
+    type: "Automotive",
+    desc: "A modern luxury automotive website designed to showcase premium vehicles with elegant visuals, detailed specifications, pricing information, and vehicle enquiry options.",
+    image: "/images/car1.jpeg",
+    link: "https://velora-auto.vercel.app/",
+    tags: ["React", "CSS", "JavaScript", "Responsive Design"],
+  },
 ];
 
 // Certificates
+// If "link" is empty, clicking opens the certificate image itself.
 const CERTIFICATES = [
-  
   {
     title: "Front-End Website Development",
     issuer: "Webdeves Technologies",
@@ -100,7 +96,6 @@ const CERTIFICATES = [
   },
 ];
 
-
 // Tech Stack
 const TECH = [
   { name: "HTML", icon: SiHtml5, color: "#e34f26" },
@@ -113,7 +108,6 @@ const TECH = [
   { name: "Bootstrap", icon: SiBootstrap, color: "#7952b3" },
   { name: "Git", icon: SiGit, color: "#f05032" },
   { name: "Vercel", icon: SiVercel, color: "#ffffff" },
- 
 ];
 
 const TABS = [
@@ -125,19 +119,11 @@ const TABS = [
 /* ========================================================== */
 
 const fade = {
-  hidden: {
-    opacity: 0,
-    y: 24,
-  },
-
+  hidden: { opacity: 0, y: 24 },
   show: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.5,
-      delay: i * 0.08,
-      ease: "easeOut",
-    },
+    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" },
   }),
 };
 
@@ -166,9 +152,7 @@ function Portfolio() {
       <div className="pf-inner">
         <h2 className="pf-title">Portfolio</h2>
 
-        <p className="pf-sub">
-          My work, certificates and the tools I use.
-        </p>
+        <p className="pf-sub">My work, certificates and the tools I use.</p>
 
         {/* TABS */}
         <div className="pf-tabs" role="tablist">
@@ -189,20 +173,10 @@ function Portfolio() {
         <AnimatePresence mode="wait">
           <motion.div
             key={tab}
-            initial={{
-              opacity: 0,
-              y: 16,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-            }}
-            transition={{
-              duration: 0.3,
-            }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
             {/* PROJECTS */}
             {tab === "projects" && (
@@ -214,10 +188,7 @@ function Portfolio() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Thumb
-                    src={COMPANY.image}
-                    alt={COMPANY.name}
-                  />
+                  <Thumb src={COMPANY.image} alt={COMPANY.name} />
 
                   <div className="pf-featured-body">
                     <span className="pf-badge">
@@ -256,10 +227,7 @@ function Portfolio() {
                       initial="hidden"
                       animate="show"
                     >
-                      <Thumb
-                        src={p.image}
-                        alt={p.title}
-                      />
+                      <Thumb src={p.image} alt={p.title} />
 
                       <h3>{p.title}</h3>
 
@@ -288,7 +256,9 @@ function Portfolio() {
                   <motion.a
                     key={c.title}
                     className="pf-card pf-cert"
-                    href={c.link}
+                    /* FIXED: empty link used to reload the page.
+                       Now it opens the certificate image instead. */
+                    href={c.link || c.image}
                     target="_blank"
                     rel="noopener noreferrer"
                     variants={fade}
@@ -296,10 +266,7 @@ function Portfolio() {
                     initial="hidden"
                     animate="show"
                   >
-                    <Thumb
-                      src={c.image}
-                      alt={c.title}
-                    />
+                    <Thumb src={c.image} alt={c.title} />
 
                     <div className="pf-cert-row">
                       <div>
@@ -310,10 +277,7 @@ function Portfolio() {
                         </p>
                       </div>
 
-                      <ArrowUpRight
-                        size={22}
-                        className="pf-cert-arrow"
-                      />
+                      <ArrowUpRight size={22} className="pf-cert-arrow" />
                     </div>
                   </motion.a>
                 ))}
@@ -323,28 +287,21 @@ function Portfolio() {
             {/* TECH STACK */}
             {tab === "tech" && (
               <div className="pf-tech">
-                {TECH.map(
-                  ({ name, icon: Icon, color }, i) => (
-                    <motion.div
-                      key={name}
-                      className="pf-tech-item"
-                      style={{
-                        "--c": color,
-                      }}
-                      variants={fade}
-                      custom={i * 0.5}
-                      initial="hidden"
-                      animate="show"
-                    >
-                      <Icon
-                        size={42}
-                        color={color}
-                      />
+                {TECH.map(({ name, icon: Icon, color }, i) => (
+                  <motion.div
+                    key={name}
+                    className="pf-tech-item"
+                    style={{ "--c": color }}
+                    variants={fade}
+                    custom={i * 0.5}
+                    initial="hidden"
+                    animate="show"
+                  >
+                    <Icon size={42} color={color} />
 
-                      <span>{name}</span>
-                    </motion.div>
-                  )
-                )}
+                    <span>{name}</span>
+                  </motion.div>
+                ))}
               </div>
             )}
           </motion.div>

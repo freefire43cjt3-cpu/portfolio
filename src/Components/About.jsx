@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import "./About.css";
 
-const PROFILE_IMG = "/images/Ray.jpeg";
+const PROFILE_IMG = "/images/bobo.jpeg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
