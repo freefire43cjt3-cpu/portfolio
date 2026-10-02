@@ -1,139 +1,241 @@
-/* LOADER.CSS */
+/* =========================================
+   LOADER — dark space / tech portfolio
+   Matches: #050510 bg, blue-purple-pink glows
+========================================= */
 
-.loader{
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #050810;
-    z-index: 9999;
-    color: white;
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #050510;
+  color: #ffffff;
 }
 
-.loader-content{
-    width: 90%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+/* ---------- GLOW ORBS ---------- */
+
+.loader-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  pointer-events: none;
+  opacity: 0.55;
 }
 
-
-/* RC LOGO */
-.loader-logo{
-    width: 140px;
-    height: 140px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    font-size: 32px;
-    font-weight: 700;
-    color: #299cff;
-    border: 5px solid #202633;
-    margin-bottom: 35px;
-    position: relative;
+.loader-orb-1 {
+  top: -120px;
+  left: -100px;
+  width: 380px;
+  height: 380px;
+  background: rgba(99, 102, 241, 0.45);
+  animation: loaderDrift 9s ease-in-out infinite alternate;
 }
 
-
-
-/* THE RING */
-.loader-logo::before{
-    content: "";
-    position: absolute;
-    inset: -5px;
-    border-radius: 50%;
-    border: 5px solid transparent;
-  border-top-color: #299cff;
-  border-right-color: #299cff;
-  border-bottom-color: #7b5cff;
-  transform: rotate(-35deg);
-  animation: spin 1.5s linear infinite;
+.loader-orb-2 {
+  right: -140px;
+  bottom: -140px;
+  width: 430px;
+  height: 430px;
+  background: rgba(236, 72, 153, 0.3);
+  animation: loaderDrift 11s ease-in-out infinite alternate-reverse;
 }
 
-/* LOADING TEXT */
-.loader-text{
-    color: #777f8f;
-    font-size: 14px;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
+.loader-orb-3 {
+  left: 40%;
+  top: 55%;
+  width: 300px;
+  height: 300px;
+  background: rgba(56, 189, 248, 0.22);
+  animation: loaderDrift 13s ease-in-out infinite alternate;
 }
 
-/* PERCENTAGE */
-.loader-number{
-    font-size: 42px;
-  font-weight: 700;
-
-  margin-bottom: 25px;
-
-  background: linear-gradient(
-    90deg,
-    #299cff,
-    #7b5cff
-  );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* PROGRESS BAR BACKGROUND */
-loader.bar{
-    width: 100%;
-    height: 4px;
-    background: #1b2230;
-     border-radius: 10px;
-    overflow: hidden;
-}
-
-/* PROGRESS */
-.loader-progress {
-  height: 100%;
-
-  border-radius: 10px;
-
-  background: linear-gradient(
-    90deg,
-    #7b5cff,
-    #299cff,
-    #38d9c5
-  );
-
-  transition: width 0.1s linear;
-}
-
-
-/* ANIMATION */
-@keyframes spin {
+@keyframes loaderDrift {
   from {
-    transform: rotate(-35deg);
+    transform: translate(0, 0) scale(1);
   }
-
   to {
-    transform: rotate(325deg);
+    transform: translate(50px, -40px) scale(1.15);
   }
 }
 
-/* RESPONSIVE FOR ALL DEVICES */
-@media (max-width: 600px) {
-  .loader-content {
-    width: 75%;
+/* ---------- STARFIELD ---------- */
+
+.loader-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.loader-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #ffffff;
+  opacity: 0.15;
+  animation: loaderTwinkle 2.5s ease-in-out infinite;
+}
+
+@keyframes loaderTwinkle {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.4);
+  }
+}
+
+/* ---------- CONTENT ---------- */
+
+.loader-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* ---------- ORBIT SPINNER ---------- */
+
+.loader-spinner {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #818cf8;
+  border-right-color: #ec4899;
+  animation: loaderSpin 1.4s linear infinite;
+}
+
+.loader-ring-2 {
+  inset: 12px;
+  border-top-color: #38bdf8;
+  border-right-color: transparent;
+  animation-duration: 2s;
+  animation-direction: reverse;
+}
+
+@keyframes loaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-core {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #818cf8, #ec4899);
+  box-shadow: 0 0 24px rgba(129, 140, 248, 0.9),
+    0 0 48px rgba(236, 72, 153, 0.5);
+}
+
+/* ---------- NAME ---------- */
+
+.loader-name {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: 6px;
+  line-height: 1.1;
+}
+
+.loader-name span {
+  display: inline-block;
+  background: linear-gradient(90deg, #a5b4fc, #f0abfc, #7dd3fc);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: loaderShine 3s linear infinite;
+}
+
+@keyframes loaderShine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* ---------- SUBTITLE ---------- */
+
+.loader-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: #7c7ca8;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.loader-dots {
+  display: inline-flex;
+  margin-left: 3px;
+  color: #818cf8;
+  font-weight: 800;
+}
+
+/* ---------- PROGRESS BAR ---------- */
+
+.loader-bar {
+  width: 210px;
+  max-width: 60vw;
+  height: 3px;
+  border-radius: 99px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.loader-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.8);
+}
+
+/* ---------- REDUCED MOTION ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-orb,
+  .loader-star,
+  .loader-ring,
+  .loader-bar-fill,
+  .loader-name span {
+    animation: none;
+  }
+}
+
+/* ---------- SMALL PHONES ---------- */
+
+@media (max-width: 400px) {
+  .loader-name {
+    letter-spacing: 4px;
   }
 
-  .loader-logo {
-    width: 120px;
-    height: 120px;
-    font-size: 28px;
-  }
-
-  .loader-number {
-    font-size: 36px;
-  }
-
-  .loader-text {
-    font-size: 13px;
+  .loader-subtitle {
+    letter-spacing: 3px;
   }
 }

@@ -1,0 +1,14 @@
+html,
+body,
+#root,
+.app {
+  margin: 0;
+  padding: 0;
+  background: #050510;
+  color: #ffffff;
+  scroll-behavior: smooth;
+}
+
+section {
+  background: #050510;
+}

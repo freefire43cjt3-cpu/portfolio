@@ -1,244 +1,392 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Mail,
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+} from "lucide-react";
+import {
+  FaXTwitter,
+  FaRedditAlien,
+  FaTiktok,
+} from "react-icons/fa6";
 import "./Contact.css";
-import { motion } from "framer-motion";
+
+// Formspree configuration
+const FORMSPREE_ID = "mdekglyz";
+
+const EMAIL = "charlessamuelraymond@gmail.com";
+
+const SOCIALS = [
+  {
+    icon: FaXTwitter,
+    href: "https://x.com/rayghog?s=11",
+    label: "X",
+  },
+  {
+    icon: FaRedditAlien,
+    href: "https://www.reddit.com/u/RAYghog/s/bcjfBDxmvE",
+    label: "Reddit",
+  },
+  {
+    icon: FaTiktok,
+    href: "https://www.tiktok.com/@ray_tech2",
+    label: "TikTok",
+  },
+];
+
+const EMPTY = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+};
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validate(values) {
+  const errors = {};
+
+  if (values.name.trim().length < 2) {
+    errors.name = "Please enter your name.";
+  }
+
+  if (!EMAIL_RE.test(values.email.trim())) {
+    errors.email = "Please enter a valid email address.";
+  }
+
+  if (values.message.trim().length < 10) {
+    errors.message = "Message should be at least 10 characters.";
+  }
+
+  return errors;
+}
 
 function Contact() {
-  return (
-    <section className="contact" id="contact">
-      <div className="contact-container">
+  const [values, setValues] = useState(EMPTY);
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState("idle");
 
+  const onChange = (event) => {
+    const { name, value } = event.target;
+
+    setValues((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
+
+    if (errors[name]) {
+      setErrors((previous) => ({
+        ...previous,
+        [name]: undefined,
+      }));
+    }
+
+    if (status === "error") {
+      setStatus("idle");
+    }
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    if (status === "sending") return;
+
+    const foundErrors = validate(values);
+
+    setErrors(foundErrors);
+
+    if (Object.keys(foundErrors).length > 0) {
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      const response = await fetch(
+        `https://formspree.io/f/${FORMSPREE_ID}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name.trim(),
+            email: values.email.trim(),
+            subject: values.subject.trim() || "Portfolio Contact",
+            message: values.message.trim(),
+            _replyto: values.email.trim(),
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Unable to send message.");
+      }
+
+      setStatus("success");
+      setValues({ ...EMPTY });
+      setErrors({});
+    } catch (error) {
+      console.error("Form submission failed:", error);
+      setStatus("error");
+    }
+  };
+
+  const sending = status === "sending";
+
+  return (
+    <section id="contact" className="ct-section">
+      <div className="ct-inner">
         {/* HEADER */}
         <motion.div
-          className="contact-header"
-          initial={{ opacity: 0, y: 30 }}
+          className="ct-head"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6 }}
         >
-          <span>GET IN TOUCH</span>
-
-          <h2>
-            Let's <b>Connect.</b>
+          <h2 className="ct-title">
+            Get In <span>Touch</span>
           </h2>
 
-          <p>
-            Have a project in mind or need a website for your business?
-            Send me a message and let's talk about it.
+          <p className="ct-sub">
+            Have a project in mind or just want to say hi?
+            Send me a message and I'll reply soon.
           </p>
         </motion.div>
 
-        <div className="contact-content">
-
-          {/* LEFT SIDE */}
-          <motion.div
-            className="contact-info"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+        <div className="ct-layout">
+          {/* CONTACT INFORMATION */}
+          <motion.aside
+            className="ct-info"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <div className="contact-intro">
-              <span>LET'S WORK TOGETHER</span>
+            <a href={`mailto:${EMAIL}`} className="ct-email">
+              <span className="ct-email-icon">
+                <Mail size={20} />
+              </span>
 
-              <h3>
-                Have an idea?
-                <br />
-                Let's build it.
-              </h3>
+              <span>
+                <small>Email me</small>
+                {EMAIL}
+              </span>
+            </a>
 
-              <p>
-                I'm open to new projects, collaborations, and opportunities
-                to create modern digital experiences for businesses.
-              </p>
+            <p className="ct-follow">Find me on</p>
+
+            <div className="ct-socials">
+              {SOCIALS.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
             </div>
+          </motion.aside>
 
-            {/* EMAIL */}
-            <a
-              href="mailto:charlessamuelraymond@gmail.com"
-              className="contact-item"
-            >
-              <div className="contact-icon">✉</div>
-
-              <div className="contact-item-text">
-                <span>Email</span>
-                <strong>charlessamuelraymond@gmail.com</strong>
-              </div>
-
-              <div className="contact-item-arrow">↗</div>
-            </a>
-
-            {/* PHONE */}
-            <a
-              href="tel:08136362066"
-              className="contact-item"
-            >
-              <div className="contact-icon">☎</div>
-
-              <div className="contact-item-text">
-                <span>Phone</span>
-                <strong>08136362066</strong>
-              </div>
-
-              <div className="contact-item-arrow">↗</div>
-            </a>
-
-            {/* WHATSAPP */}
-            <a
-              href="https://wa.me/2348136362066"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-item"
-            >
-              <div className="contact-icon">◉</div>
-
-              <div className="contact-item-text">
-                <span>WhatsApp</span>
-                <strong>Let's chat</strong>
-              </div>
-
-              <div className="contact-item-arrow">↗</div>
-            </a>
-
-            {/* X */}
-            <a
-              href="https://x.com/rayghog?s=11"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-item"
-            >
-              <div className="contact-icon">𝕏</div>
-
-              <div className="contact-item-text">
-                <span>X / Twitter</span>
-                <strong>@rayghog</strong>
-              </div>
-
-              <div className="contact-item-arrow">↗</div>
-            </a>
-
-          </motion.div>
-
-          {/* FORM */}
+          {/* CONTACT FORM */}
           <motion.div
-            className="contact-form-wrapper"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            className="ct-card"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="form-heading">
-              <span>START A PROJECT</span>
+            <AnimatePresence mode="wait">
+              {status === "success" ? (
+                <motion.div
+                  key="success"
+                  className="ct-success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  role="status"
+                >
+                  <CheckCircle2 size={56} />
 
-              <h3>Send me a message.</h3>
+                  <h3>Message sent!</h3>
 
-              <p>
-                Tell me a little about what you want to build.
-              </p>
-            </div>
+                  <p>
+                    Thanks for reaching out. I'll get back to you
+                    as soon as I can.
+                  </p>
 
-            <form
-              action="https://formspree.io/f/mbgjjdqg"
-              method="POST"
-              className="contact-form"
-            >
+                  <button
+                    type="button"
+                    className="ct-btn"
+                    onClick={() => setStatus("idle")}
+                  >
+                    Send another message
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  onSubmit={onSubmit}
+                  noValidate
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  {/* NAME AND EMAIL */}
+                  <div className="ct-row">
+                    <div className="ct-field">
+                      <label htmlFor="name">Name</label>
 
-              <div className="form-row">
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        autoComplete="name"
+                        placeholder="Your name"
+                        value={values.name}
+                        onChange={onChange}
+                        disabled={sending}
+                        aria-invalid={!!errors.name}
+                        aria-describedby={
+                          errors.name ? "name-error" : undefined
+                        }
+                        className={errors.name ? "bad" : ""}
+                      />
 
-                {/* NAME */}
-                <div className="form-group">
-                  <label htmlFor="name">
-                    Your Name
-                  </label>
+                      {errors.name && (
+                        <span id="name-error" className="ct-err">
+                          {errors.name}
+                        </span>
+                      )}
+                    </div>
 
+                    <div className="ct-field">
+                      <label htmlFor="email">Email</label>
+
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        placeholder="you@example.com"
+                        value={values.email}
+                        onChange={onChange}
+                        disabled={sending}
+                        aria-invalid={!!errors.email}
+                        aria-describedby={
+                          errors.email ? "email-error" : undefined
+                        }
+                        className={errors.email ? "bad" : ""}
+                      />
+
+                      {errors.email && (
+                        <span id="email-error" className="ct-err">
+                          {errors.email}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* SUBJECT */}
+                  <div className="ct-field">
+                    <label htmlFor="subject">
+                      Subject <em>(optional)</em>
+                    </label>
+
+                    <input
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      placeholder="What's this about?"
+                      value={values.subject}
+                      onChange={onChange}
+                      disabled={sending}
+                    />
+                  </div>
+
+                  {/* MESSAGE */}
+                  <div className="ct-field">
+                    <label htmlFor="message">Message</label>
+
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={5}
+                      placeholder="Tell me about your project..."
+                      value={values.message}
+                      onChange={onChange}
+                      disabled={sending}
+                      aria-invalid={!!errors.message}
+                      aria-describedby={
+                        errors.message ? "message-error" : undefined
+                      }
+                      className={errors.message ? "bad" : ""}
+                    />
+
+                    {errors.message && (
+                      <span id="message-error" className="ct-err">
+                        {errors.message}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* SPAM PROTECTION */}
                   <input
-                    id="name"
                     type="text"
-                    name="name"
-                    placeholder="John Doe"
-                    required
+                    name="_gotcha"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    style={{
+                      position: "absolute",
+                      left: "-9999px",
+                    }}
+                    aria-hidden="true"
                   />
-                </div>
 
-                {/* EMAIL */}
-                <div className="form-group">
-                  <label htmlFor="email">
-                    Your Email
-                  </label>
+                  {/* ERROR MESSAGE */}
+                  {status === "error" && (
+                    <div className="ct-alert" role="alert">
+                      <AlertCircle size={18} />
 
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="you@example.com"
-                    required
-                  />
-                </div>
+                      <span>
+                        Something went wrong. Please try again,
+                        or email me directly.
+                      </span>
+                    </div>
+                  )}
 
-              </div>
-
-              {/* SUBJECT */}
-              <div className="form-group">
-                <label htmlFor="subject">
-                  Subject
-                </label>
-
-                <input
-                  id="subject"
-                  type="text"
-                  name="subject"
-                  placeholder="Website project"
-                  required
-                />
-              </div>
-
-              {/* MESSAGE */}
-              <div className="form-group">
-                <label htmlFor="message">
-                  Message
-                </label>
-
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="6"
-                  placeholder="Tell me about your project..."
-                  required
-                ></textarea>
-              </div>
-
-              <input
-                type="hidden"
-                name="_subject"
-                value="New Portfolio Contact Message"
-              />
-
-              <button
-                type="submit"
-                className="contact-button"
-              >
-                Send Message
-                <span>↗</span>
-              </button>
-
-            </form>
+                  {/* SUBMIT BUTTON */}
+                  <button
+                    type="submit"
+                    className="ct-btn ct-submit"
+                    disabled={sending}
+                  >
+                    {sending ? (
+                      <>
+                        <Loader2 size={18} className="ct-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send size={16} />
+                      </>
+                    )}
+                  </button>
+                </motion.form>
+              )}
+            </AnimatePresence>
           </motion.div>
-
         </div>
-
-        {/* BOTTOM CTA */}
-        <motion.div
-          className="contact-bottom"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span>AVAILABLE FOR PROJECTS</span>
-
-          <p>
-            Let's turn your idea into something people can use.
-          </p>
-        </motion.div>
-
       </div>
     </section>
   );

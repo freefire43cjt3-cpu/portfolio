@@ -1,210 +1,205 @@
-.about {
-  min-height: 100vh;
-  padding: 120px 6% 80px;
+/* =========================================
+   ABOUT SECTION
+   bg #050510 · blue #3b63e0 · purple #a855f7
+========================================= */
 
-  background: #050812;
-
-  color: white;
+.about-section {
+  position: relative;
+  width: 100%;
+  padding: 120px 6% 90px;
+  background: #050510;
+  color: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.about-container {
-  max-width: 1100px;
+/* tiny stars */
+.about-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%, rgba(255,255,255,.7), transparent),
+    radial-gradient(1px 1px at 82% 12%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1.5px 1.5px at 70% 38%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1px 1px at 26% 55%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1.5px 1.5px at 90% 68%, rgba(255,255,255,.7), transparent),
+    radial-gradient(1px 1px at 8% 82%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1px 1px at 55% 92%, rgba(255,255,255,.6), transparent);
+  animation: about-twinkle 5s ease-in-out infinite;
+}
+
+@keyframes about-twinkle {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+.about-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-
-/* Heading */
-
-.about-heading {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.about-heading span {
-  font-size: 13px;
-  font-weight: 700;
-
-  letter-spacing: 4px;
-
-  color: #38bdf8;
-}
-
-.about-heading h2 {
-  margin-top: 12px;
-
-  font-size: clamp(35px, 5vw, 55px);
-
-  margin-bottom: 0;
-
-  background: linear-gradient(
-    90deg,
-    #ffffff,
-    #8b5cf6
+/* soft glow behind the photo */
+.about-inner::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -20px;
+  left: 50%;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(59, 99, 224, 0.35),
+    rgba(168, 85, 247, 0.15) 50%,
+    transparent 70%
   );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  filter: blur(40px);
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
+/* =========================================
+   PHOTO
+========================================= */
 
-/* Content */
-
-.about-content {
-  display: grid;
-
-  grid-template-columns: 1.3fr 0.7fr;
-
-  gap: 70px;
-
-  align-items: center;
+.about-photo {
+  width: 100%;
+  max-width: 340px;
+  /* bottom of the photo melts into the background */
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
 }
 
-
-/* Text */
-
-.about-text {
-  color: #9ca8bb;
-
-  font-size: 16px;
-
-  line-height: 1.8;
+.about-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  filter: drop-shadow(0 0 40px rgba(59, 99, 224, 0.35));
 }
 
-.about-text p {
-  margin-bottom: 20px;
-}
-
-.about-intro {
-  color: #dbe4f0;
-
-  font-size: 20px;
-}
-
-.about-intro strong {
-  color: #38bdf8;
-}
-
-
-/* Button */
-
-.about-button {
-  display: inline-block;
-
-  margin-top: 15px;
-
-  padding: 13px 22px;
-
-  color: white;
-
-  text-decoration: none;
-
-  border-radius: 30px;
-
-  background: linear-gradient(
-    135deg,
-    #22d3ee,
-    #8b5cf6
-  );
-
-  font-weight: 600;
-
-  transition: 0.3s ease;
-}
-
-.about-button:hover {
-  transform: translateY(-3px);
-}
-
-
-/* Card */
-
-.about-card {
-  padding: 35px 30px;
-
-  border-radius: 24px;
-
-  background: rgba(255, 255, 255, 0.04);
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  backdrop-filter: blur(15px);
-
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-}
-
-.about-card-icon {
-  width: 55px;
-  height: 55px;
-
+.about-photo-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  margin-bottom: 25px;
-
-  border-radius: 15px;
-
-  background: linear-gradient(
-    135deg,
-    #22d3ee,
-    #8b5cf6
-  );
-
-  font-weight: 800;
-
-  font-size: 18px;
-}
-
-.about-card h3 {
-  margin-bottom: 10px;
-
-  font-size: 22px;
-}
-
-.about-card p {
-  color: #8f9aae;
-
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: 2px dashed rgba(148, 163, 184, 0.35);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #64748b;
   font-size: 14px;
 }
 
-.about-line {
-  height: 1px;
+/* =========================================
+   TEXT
+========================================= */
 
-  margin: 25px 0;
-
-  background: rgba(255, 255, 255, 0.1);
+.about-text {
+  width: 100%;
+  text-align: left;
 }
 
-.about-card span {
-  color: #64748b;
-
-  font-size: 13px;
+.about-title {
+  margin: 0;
+  font-size: clamp(2.4rem, 9vw, 3.8rem);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
+.about-hi {
+  display: block;
+  background: linear-gradient(90deg, #3b63e0, #7c5cf0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
 
-/* Mobile */
+.about-name {
+  display: block;
+  color: #ffffff;
+}
 
-@media (max-width: 800px) {
+/* short gradient line under the name */
+.about-title::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 3px;
+  margin-top: 22px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #3b63e0, #a855f7, #ec4899);
+}
 
-  .about {
+.about-bio {
+  max-width: 560px;
+  margin: 24px 0 0;
+  color: #b4b8e0;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+/* =========================================
+   DESKTOP: photo left, text right
+========================================= */
+
+@media (min-width: 900px) {
+  .about-section {
+    padding: 140px 6% 110px;
+  }
+
+  .about-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 70px;
+  }
+
+  .about-inner::before {
+    left: 180px;
+    width: 440px;
+    height: 440px;
+  }
+
+  .about-photo {
+    flex: 0 0 360px;
+  }
+
+  .about-text {
+    flex: 1;
+  }
+
+  .about-bio {
+    font-size: 18px;
+  }
+}
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+  .about-section {
     padding: 100px 20px 70px;
   }
 
-  .about-heading {
-    margin-bottom: 40px;
+  .about-bio {
+    font-size: 15px;
   }
+}
 
-  .about-content {
-    grid-template-columns: 1fr;
-
-    gap: 35px;
-  }
-
-  .about-intro {
-    font-size: 18px;
-  }
-
-  .about-card {
-    padding: 28px 24px;
+@media (prefers-reduced-motion: reduce) {
+  .about-section::before {
+    animation: none;
   }
 }

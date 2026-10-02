@@ -1,100 +1,74 @@
+import { ArrowUp, Mail } from "lucide-react";
+import { FaXTwitter, FaRedditAlien, FaTiktok } from "react-icons/fa6";
 import "./Footer.css";
-import { ArrowUpRight, ArrowUp } from "lucide-react";
+
+const NAME = "Raymond Charles";
+const EMAIL = "charlessamuelraymond@gmail.com";
+
+const LINKS = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Portfolio", href: "#portfolio" },
+  { label: "Contact", href: "#contact" },
+];
+
+const SOCIALS = [
+  { icon: FaXTwitter, href: "https://x.com/rayghog?s=11", label: "X" },
+  { icon: FaRedditAlien, href: "https://www.reddit.com/u/RAYghog/s/bcjfBDxmvE", label: "Reddit" },
+  { icon: FaTiktok, href: "https://www.tiktok.com/@ray_tech2", label: "TikTok" },
+  { icon: Mail, href: `mailto:${EMAIL}`, label: "Email" },
+];
 
 function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="footer">
-      <div className="footer-container">
-
-        {/* TOP */}
-        <div className="footer-top">
-
+    <footer className="ft-footer">
+      <div className="ft-inner">
+        <div className="ft-top">
           {/* BRAND */}
-          <div className="footer-brand">
-            <a href="#home" className="footer-logo">
-              <span>R</span>C
+          <div className="ft-brand">
+            <a href="#home" className="ft-logo">
+              {NAME.split(" ")[0].toUpperCase()}<span>.C</span>
             </a>
-
             <p>
-              Building modern digital experiences with clean code,
-              creativity, and purpose.
+              Frontend web developer building clean, modern and responsive web
+              experiences for businesses and brands.
             </p>
-
-            <a href="#contact" className="footer-cta">
-              Let's work together
-              <ArrowUpRight size={16} />
-            </a>
           </div>
 
-          {/* NAVIGATION */}
-          <div className="footer-column">
-            <h4>Explore</h4>
+          {/* LINKS */}
+          <nav className="ft-links" aria-label="Footer">
+            <h4>Quick Links</h4>
+            {LINKS.map(({ label, href }) => (
+              <a key={label} href={href}>{label}</a>
+            ))}
+          </nav>
 
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#certificates">Certificates</a>
-            <a href="#contact">Contact</a>
-          </div>
-
-          {/* CONNECT */}
-          <div className="footer-column footer-connect">
+          {/* SOCIALS */}
+          <div className="ft-connect">
             <h4>Connect</h4>
-
-            <a href="mailto:charlessamuelraymond@gmail.com">
-              Email
-              <ArrowUpRight size={14} />
-            </a>
-
-            <a
-              href="https://wa.me/2348136362066"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              WhatsApp
-              <ArrowUpRight size={14} />
-            </a>
-
-            <a
-              href="https://x.com/rayghog?s=11"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              X / Twitter
-              <ArrowUpRight size={14} />
-            </a>
+            <div className="ft-socials">
+              {SOCIALS.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
+                >
+                  <Icon size={17} />
+                </a>
+              ))}
+            </div>
           </div>
-
         </div>
 
-        {/* LARGE FOOTER TEXT */}
-        <div className="footer-big-text">
-          <span>RAYMOND</span>
-        </div>
-
-        {/* LINE */}
-        <div className="footer-line"></div>
-
-        {/* BOTTOM */}
-        <div className="footer-bottom">
-
-          <p>
-            © {year} Raymond Charles. All rights reserved.
-          </p>
-
-          <p className="footer-location">
-            Based in Nigeria · Available for projects
-          </p>
-
-          <a href="#home" className="back-top" aria-label="Back to top">
-            <ArrowUp size={18} />
+        <div className="ft-bottom">
+          <p>© {new Date().getFullYear()} {NAME}. All rights reserved.</p>
+          <a href="#home" className="ft-top-btn" aria-label="Back to top">
+            Back to top <ArrowUp size={15} />
           </a>
-
         </div>
-
       </div>
     </footer>
   );

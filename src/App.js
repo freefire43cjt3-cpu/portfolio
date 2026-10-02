@@ -1,11 +1,10 @@
 import { useState } from "react";
+import "./App.css";
 import Loader from "./Components/Loader";
 import Navbar from "./Components/Navbar";
-import Home from "./Components/Home";
+import Hero from "./Components/Hero";
 import About from "./Components/About";
-import Skils from "./Components/Skills";
-import Project from "./Components/Projects";
-import Certificates from "./Components/Certificates";
+import Portfolio from "./Components/Portfolio";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 
@@ -14,19 +13,18 @@ function App() {
 
   return (
     <>
-      {loading && (
+      {loading ? (
         <Loader onComplete={() => setLoading(false)} />
+      ) : (
+        <>
+          <Navbar />
+          <Hero />
+          <About />
+          <Portfolio />
+          <Contact />
+          <Footer />
+        </>
       )}
-
-      {!loading && <Navbar />}
-      <Home />
-      <About />
-      <Skils />
-      <Project />
-      <Certificates />
-      <Contact />
-      <Footer />
-
     </>
   );
 }
